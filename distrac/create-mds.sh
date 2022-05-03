@@ -24,4 +24,10 @@ sudo systemctl start ceph-mds@$HOSTNAME
 wait
 ./create-pool.sh -pn=cephfs_metadata -per=0.10 -f=$folder &
 wait 
-ceph fs new cephfs cephfs_metadata cephfs_data
+ceph fs new cephfs cephfs_metadata cephfs_data &
+wait 
+state=0
+while  [ $state -le 0 ]
+do
+       state=$(ceph fs status | grep -c "active")
+done
