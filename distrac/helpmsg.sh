@@ -10,6 +10,7 @@ function helpmsg(){	echo "
  -f=  | --folder=    Folder to locate Ceph keys this allows for multiple deployments when different folders speficed.
  -hf= | --hostfile=  When not using UGE with a parallel environment, provide a file with a list of comma separated hosts
  -pn= | --poolname=  Define the name of a pool if using RADOS, i.e. -pn=example or --poolname=example 
+ -fs  | --fs         To use a cephfs set the flag set on i.e. -fs or --fs this will create a cephfs mount point in $HOME/mycephfs
  -rgw | --rgw        To use a rados gateway set the flag set on i.e. -rgw or --rgw
  -uid=| --uid=       To create an s3 user for the rados gateway i.e.  -uid=test or --uid=test
  -sk= | --secretkey= This will create an acess and secret key for the user define in -uid, i.e. -sk=test or --secretkey=test
