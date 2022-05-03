@@ -38,6 +38,9 @@ fi
 
 module load openmpi
 amountOfHosts=`cat $folder/amountOfHosts.num`
+
+echo "Removing FS"
+mpirun -np $amountOfHosts --map-by ppr:1:node --hostfile $folder/hostfile ./remove-fs.sh
 echo "Removing Ceph"
 mpirun -np $amountOfHosts --map-by ppr:1:node --hostfile $folder/hostfile ./remove-ceph.sh
 echo "Removing OSDs"
