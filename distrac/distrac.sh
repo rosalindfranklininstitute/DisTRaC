@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 rgw=false
+fs=false
 folder="."
 source ./helpmsg.sh
 
@@ -14,7 +15,7 @@ do
 case $i in
     -f=*|--folder=*)
     folder="${i#*=}"
-    mkdir $folder
+    mkdir $folder 2> /dev/null
     shift # past argument=value
     ;;
     -i=*|--interface=*)
@@ -39,6 +40,10 @@ case $i in
     ;;
     -rgw|--rgw)
     rgw=true
+    shift
+    ;;
+    -fs|--fs)
+    fs=true
     shift
     ;;
     -uid=*|--uid=*)
@@ -79,6 +84,13 @@ cat $folder/hostfile
 module load openmpi
 amountOfHosts=`cat $folder/amountOfHosts.num`
 mpirun -np $amountOfHosts --map-by ppr:1:node --hostfile $folder/hostfile  ./create-osd.sh -s=$size -n=$amount -f=$folder -t=$type
+
+if ([ "$fs" = "true" ])
+    then
+    ./create-mds.sh -f=$folder
+    mpirun -np $amountOfHosts --map-by ppr:1:node --hostfile $folder/hostfile  ./create-fs.sh
+fi
+
 if ([ ! -z "$poolname" ] && [ "$rgw" = "false" ])
 then
    ./create-pool.sh -pn=$poolname -per=1 -f=$folder
@@ -87,7 +99,7 @@ fi
 module unload openmpi
 
 if ([ "$rgw" = "true" ] && [ -z "$poolname" ])
-	 then
+	then
 	./create-rgw.sh -f=$folder
 	if ([ -z "$id" ] && [ -z "$secret" ])
 	then
