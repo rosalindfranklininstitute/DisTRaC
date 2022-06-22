@@ -47,4 +47,4 @@ for num in $(seq 0 $[amount-1])
 do
     sudo ceph-volume --log-path /dev/null lvm prepare --data /dev/$type$num
 done
-sudo ceph-volume lvm activate --all
+sudo ceph-volume --log-path /dev/null lvm activate --all
