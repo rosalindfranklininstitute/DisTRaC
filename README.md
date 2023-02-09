@@ -12,6 +12,10 @@
 
 DisTRaC is a deployment tool that allows Ceph to run on a High-Performance Computing cluster using RAM when a Network File System is present. It's designed to be used with a job scheduler such as Univa Grid Engine (UGE) to create a transient object store as and when required which lasts as long as the user intends.
 
+## Quickstart guide
+
+If you would like to quickly run/test DisTRaC, please look at [quickstart guide](quickstart.md)If you would like to run/test DisTRaC quickly, please look at [quickstart guide](quickstart.md)
+
 ## System Requirements:
 - Ceph version 12+ (Tested on Luminous and Nautilus, Octopus) 
 - OpenMPI 
