@@ -9,7 +9,8 @@ This document covers quickly setting up and running DisTRaC on a single node wit
 	* 1.1. [Installing packages](#Installingpackages)
 	* 1.2. [Setup and configuration](#Setupandconfiguration)
 	* 1.3. [Uninstalling packages](#Uninstallingpackages)
-	* 1.4. [End](#End)
+	* 1.4. [Removing DisTRaC](#RemovingDisTRaC)
+	* 1.5. [End](#End)
 
 <!-- vscode-markdown-toc-config
 	numbering=true
@@ -91,10 +92,39 @@ sudo apt-get install ceph lvm2 openmpi-bin bc
 This leaves behind many packages that will no longer be required as they were installed as dependencies of this package. Therefore to easily remove these packages, please run.
 
 ```
-
 sudo apt autoremove
 ```
 
-###  1.4. <a name='End'></a>End
+###  1.4. <a name='RemovingDisTRaC'></a>Removing DisTRaC
+This is all of the commands read through to understand each line.
+```
+sudo rm /etc/sudoers.d/distrac
+sudo rm /usr/bin/calculate-pool-pg.sh /usr/bin/create-gram.sh /usr/bin/create-osd.sh /usr/bin/create-zram-lvm.sh /usr/bin/helpmsg.sh /usr/bin/remove-distrac.sh /usr/bin/remove-osd.sh /usr/bin/uge-hostfile.sh /usr/bin/create-brd.sh /usr/bin/create-mds.sh /usr/bin/create-pool.sh /usr/bin/create-zram.sh /usr/bin/process-hostfile.sh /usr/bin/remove-fs.sh /usr/bin/remove-temp-files.sh /usr/bin/create-fs.sh /usr/bin/create-mgr.sh /usr/bin/create-rgw.sh /usr/bin/distrac-config-log.sh /usr/bin/remove-brd.sh /usr/bin/remove-gram-lvm.sh /usr/bin/remove-zram-lvm.sh /usr/bin/create-gram-lvm.sh /usr/bin/create-mon.sh /usr/bin/create-s3-user.sh /usr/bin/distrac.sh /usr/bin/remove-ceph.sh /usr/bin/remove-gram.sh /usr/bin/remove-zram.sh
+sudo gpasswd -d ${USER} distrac
+sudo groupdel distrac
+cd ..
+rm -rf DisTraC
+```
+Remove the DisTRaC sudoers file
+```
+sudo rm /etc/sudoers.d/distrac
+```
+Remove the DisTraC files
+```
+sudo rm /usr/bin/calculate-pool-pg.sh /usr/bin/create-gram.sh /usr/bin/create-osd.sh /usr/bin/create-zram-lvm.sh /usr/bin/helpmsg.sh /usr/bin/remove-distrac.sh /usr/bin/remove-osd.sh /usr/bin/uge-hostfile.sh /usr/bin/create-brd.sh /usr/bin/create-mds.sh /usr/bin/create-pool.sh /usr/bin/create-zram.sh /usr/bin/process-hostfile.sh /usr/bin/remove-fs.sh /usr/bin/remove-temp-files.sh /usr/bin/create-fs.sh /usr/bin/create-mgr.sh /usr/bin/create-rgw.sh /usr/bin/distrac-config-log.sh /usr/bin/remove-brd.sh /usr/bin/remove-gram-lvm.sh /usr/bin/remove-zram-lvm.sh /usr/bin/create-gram-lvm.sh /usr/bin/create-mon.sh /usr/bin/create-s3-user.sh /usr/bin/distrac.sh /usr/bin/remove-ceph.sh /usr/bin/remove-gram.sh /usr/bin/remove-zram.sh
+```
+
+Delete the group and user
+```
+sudo gpasswd -d ${USER} distrac
+sudo groupdel distrac
+```
+Delete the repo
+```
+cd ..
+rm -rf DisTraC
+```
+
+###  1.5. <a name='End'></a>End
 
 Thank you for following the quick start guide. If you have any questions feel free to raise an issue on the repo.
