@@ -125,7 +125,6 @@ cd ..
 rm -rf DisTraC
 ```
 
-
 ###  1.5. <a name='End'></a>End
 
 Thank you for following the quick start guide. If you have any questions feel free to raise an issue on the repo.
